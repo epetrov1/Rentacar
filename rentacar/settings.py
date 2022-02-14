@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #external
     'rest_framework',
+    'django_filters',
     'rest_framework.authtoken',
     'djoser',
 
@@ -139,11 +140,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSIONS_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 
@@ -169,3 +171,4 @@ DJOSER = {
 
     }
 }
+

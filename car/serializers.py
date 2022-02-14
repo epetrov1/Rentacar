@@ -1,38 +1,39 @@
 from rest_framework import serializers
 from .models import CarBrand, CarModel, UserCar
 
-class CarBrandSerializer(serializers.Serializer):
+class CarBrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarBrand
-        fields = (
+        fields = [
             'id', 
             'name',
             'created_at', 
             'updated_at', 
             'deleted_at'
-            )
+        ]
 
 
 
-class CarModelSerializer(serializers.Serializer):
+class CarModelSerializer(serializers.ModelSerializer):
+    car_brand = serializers.PrimaryKeyRelatedField(read_only=True)
     class Meta:
         model = CarModel
-        fields = (
+        fields = [
             'id', 
             'name', 
             'car_brand', 
             'created_at', 
             'updated_at', 
             'deleted_at'
-            )
+        ]
 
 
-class UserCarSerializer(serializers.Serializer):
+class UserCarSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCar
-        fields = (
+        fields = [
             'id', 
-            'name', 
+            'user', 
             'car_brand', 
             'car_model', 
             'odometer', 
@@ -40,4 +41,4 @@ class UserCarSerializer(serializers.Serializer):
             'created_at',
             'updated_at', 
             'deleted_at'
-            )
+        ]
